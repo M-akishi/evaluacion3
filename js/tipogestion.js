@@ -29,6 +29,7 @@ const requestOptions = {
 fetch("http://144.126.210.74:8080/api/tipo_gestion", requestOptions)
   .then((response) => {
     if(response.status == 200) {
+      alert("creado");
       location.href ="listar.html";
     }
   })
@@ -154,6 +155,7 @@ function actualizarTipoGestion(){
   fetch("http://144.126.210.74:8080/api/tipo_gestion/"+ g_id_tipo_gestion, requestOptions)
     .then((response) => {
       if(response.status == 200){
+        alert("actualizado");
         location.href ="listar.html";
       }
     })
@@ -178,6 +180,7 @@ function actualizarTipoGestion(){
         
         //Cambiar por elementos de bootstrap
         if(response.status == 200){
+          alert("eliminado")
           location.href ="listar.html";
         }
         if(response.status == 400){

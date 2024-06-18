@@ -101,6 +101,7 @@ function agregarUsuario() {
   fetch("http://144.126.210.74:8080/api/usuario", requestOptions)
     .then((response) => {
       if (response.status == 200) {
+        alert("creado");
         location.href = "listar.html";
       }
     })
@@ -200,6 +201,7 @@ var form = document.getElementById('form');
   fetch("http://144.126.210.74:8080/api/usuario/" + g_id_usuario, requestOptions)
     .then((response) => {
       if (response.status == 200) {
+        alert("actualizado");
         location.href = "listar.html";
       }
     })
@@ -261,6 +263,7 @@ function eliminarUsuario() {
 
       //Cambiar por elementos de bootstrap
       if (response.status == 200) {
+        alert("eliminado");
         location.href = "listar.html";
       }
       if (response.status == 400) {

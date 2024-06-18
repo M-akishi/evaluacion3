@@ -88,6 +88,7 @@ function agregarCliente() {
   fetch("http://144.126.210.74:8080/api/cliente", requestOptions)
     .then((response) => {
       if (response.status == 200) {
+        alert("creado");
         location.href = "listar.html";
       }
     })
@@ -147,7 +148,9 @@ function eliminarCliente() {
 
       //Cambiar por elementos de bootstrap
       if (response.status == 200) {
+        alert("eliminado");
         location.href = "listar.html";
+        
       }
       if (response.status == 400) {
         alert("No es posible eliminar. Registro está siendo utilizado.");
@@ -240,6 +243,7 @@ var form = document.getElementById('form');
   fetch("http://144.126.210.74:8080/api/cliente/" + g_id_clientes, requestOptions)
     .then((response) => {
       if (response.status == 200) {
+        alert("actualizado");
         location.href = "listar.html";
       }
     })

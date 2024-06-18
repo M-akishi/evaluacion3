@@ -82,6 +82,7 @@ function agregarResultado() {
     fetch("http://144.126.210.74:8080/api/resultado", requestOptions)
         .then((response) => {
             if (response.status == 200) {
+                alert("creado");
                 location.href = "listar.html";
             }
         })
@@ -143,6 +144,7 @@ function eliminarResultado() {
 
             //Cambiar por elementos de bootstrap
             if (response.status == 200) {
+                alert("eliminado");
                 location.href = "listar.html";
             }
             if (response.status == 400) {
@@ -227,6 +229,7 @@ function actualizarResultado() {
     fetch("http://144.126.210.74:8080/api/resultado/" + g_id_resultado, requestOptions)
         .then((response) => {
             if (response.status == 200) {
+                alert("actualizado");
                 location.href = "listar.html";
             }
         })

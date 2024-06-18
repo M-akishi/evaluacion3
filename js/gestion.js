@@ -45,6 +45,7 @@ fetch("http://144.126.210.74:8080/api/gestion", requestOptions)
   .then((response) => {
       //Por hacer: Usar componentes de bootstrap para gestionar éxito o error
     if(response.status == 200) {
+      alert("creado");
       location.href ="listar.html";
     }
     if(response.status == 400) {
@@ -206,6 +207,7 @@ function actualizarTipoGestion(){
   fetch("http://144.126.210.74:8080/api/gestion/"+ g_id_tipo_gestion, requestOptions)
     .then((response) => {
       if(response.status == 200){
+        alert("actualizado");
         location.href ="listar.html";
       }
     })
@@ -228,6 +230,7 @@ function actualizarTipoGestion(){
     fetch("http://144.126.210.74:8080/api/gestion/"+ g_id_tipo_gestion, requestOptions)
       .then((response) => {
         if(response.status == 200){
+          alert("eliminado");
           location.href ="listar.html";
         }
       })
