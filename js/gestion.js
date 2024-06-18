@@ -79,6 +79,9 @@ function listarGestion(){
 }
 
 function completarFila(element,index,arr){
+
+  var fechaHoraFormateada = formatearFechaHora(element.fecha_registro);
+
   arr[index] = document.querySelector("#tbl_gestion tbody").innerHTML +=
 `<tr>
 <td>${element.id_gestion}</td>
@@ -87,7 +90,7 @@ function completarFila(element,index,arr){
 <td>${element.nombre_tipo_gestion}</td>
 <td>${element.nombre_resultado}</td>
 <td>${element.comentarios}</td>
-<td>${element.fecha_registro}</td>
+<td>${fechaHoraFormateada}</td>
 <td>
 <a href='actualizar.html?id=${element.id_gestion}' class='btn btn-warning'>Actualizar</a> 
 <a href='eliminar.html?id=${element.id_gestion}' class='btn btn-danger'>Eliminar</a> 
@@ -155,6 +158,15 @@ function completarFormulario(element,index,arr){
 }
 
 function actualizarTipoGestion(){
+
+  var form = document.getElementById('form');
+
+  if (form.checkValidity() === false) {
+    // Si el formulario no es válido, mostrar mensajes de error
+    form.classList.add('was-validated');
+    return false;
+  }
+
   //Obtenemos el tipo de gestión que ingresa el usuario
   var id_usuario      = document.getElementById("sel_id_usuario").value;
   var id_cliente      = document.getElementById("sel_id_cliente").value;
@@ -165,6 +177,8 @@ function actualizarTipoGestion(){
   //Encabezado de la solicitud
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+
+  var fechaHoraActual = obtenerFechaHora();
   
   //Carga útil de datos
   const raw = JSON.stringify({
@@ -173,7 +187,7 @@ function actualizarTipoGestion(){
     "id_tipo_gestion": id_tipo_gestion,
     "id_resultado": id_resultado,
     "comentarios": comentarios,
-    "fecha_registro": "2024-06-05 10:52:00"
+    "fecha_registro": fechaHoraActual
   });
   
   //Opciones de solicitud
@@ -302,4 +316,34 @@ function actualizarTipoGestion(){
       cargarSelectUsuario();
       cargarSelectTipoGestion();
     }
-  
+  /**
+ * DATES
+ */
+
+function obtenerFechaHora() {
+  var fechaHoraActual = new Date();
+  var fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES', {
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }).replace(/(\d+)\/(\d+)\/(\d+)\,\s*(\d+):(\d+):(\d+)/, '$3-$2-$1 $4:$5:$6');
+  return fechaHoraFormateada;
+}
+function formatearFechaHora(fecha_registro) {
+  var fechaHoraActual = new Date(fecha_registro);
+  var fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES', {
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'UTC'
+  }).replace(/(\d+)\/(\d+)\/(\d+)\,\s*(\d+):(\d+):(\d+)/, '$3-$2-$1 $4:$5:$6');
+  return fechaHoraFormateada;
+}

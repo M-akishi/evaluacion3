@@ -192,6 +192,15 @@ function completarRelleno(element, index, arr) {
 }
 
 function actualizarCliente() {
+
+var form = document.getElementById('form');
+
+  if (form.checkValidity() === false) {
+    // Si el formulario no es válido, mostrar mensajes de error
+    form.classList.add('was-validated');
+    return false;
+  }
+
   //Obtenemos el tipo de gestión que ingresa el usuario
   var dv_cliente = document.getElementById("txt_dv").value;
   var nombre_cliente = document.getElementById("txt_nombre").value;
