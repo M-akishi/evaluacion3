@@ -3,6 +3,15 @@ var g_id_tipo_gestion ="";
 
 function agregarGestion(){
 
+
+  var form = document.getElementById('form');
+
+  if (form.checkValidity() === false) {
+    // Si el formulario no es válido, mostrar mensajes de error
+    form.classList.add('was-validated');
+    return false;
+  }
+
 var id_usuario      = document.getElementById("sel_id_usuario").value;
 var id_cliente      = document.getElementById("sel_id_cliente").value;
 var id_tipo_gestion = document.getElementById("sel_id_tipo_gestion").value;

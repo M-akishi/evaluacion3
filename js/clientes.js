@@ -38,6 +38,15 @@ function completarFila(element, index, arr) {
 
 //crear
 function agregarCliente() {
+
+  var form = document.getElementById('form');
+
+  if (form.checkValidity() === false) {
+    // Si el formulario no es válido, mostrar mensajes de error
+    form.classList.add('was-validated');
+    return false;
+  }
+
   //Obtenemos el tipo de gestión que ingresa el usuario
   var id_cliente = document.getElementById("txt_id_cliente").value;
   var dv_cliente = document.getElementById("txt_dv").value;
@@ -182,20 +191,20 @@ function completarRelleno(element, index, arr) {
 
 }
 
-function actualizarCliente(){
+function actualizarCliente() {
   //Obtenemos el tipo de gestión que ingresa el usuario
   var dv_cliente = document.getElementById("txt_dv").value;
   var nombre_cliente = document.getElementById("txt_nombre").value;
   var apellido_ciente = document.getElementById("txt_apellido").value;
   var email_cliente = document.getElementById("txt_email").value;
   var celular_cliente = document.getElementById("txt_celular").value;
-  
+
   //Encabezado de la solicitud
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   var fechaHoraActual = obtenerFechaHora();
-  
+
   //Carga útil de datos
   const raw = JSON.stringify({
     "dv": dv_cliente,
@@ -205,7 +214,7 @@ function actualizarCliente(){
     "celular": celular_cliente,
     "fecha_registro": fechaHoraActual
   });
-  
+
   //Opciones de solicitud
   const requestOptions = {
     method: "PATCH",
@@ -213,17 +222,17 @@ function actualizarCliente(){
     body: raw,
     redirect: "follow"
   };
-  
+
   //Ejecutamos solicitud
-  fetch("http://144.126.210.74:8080/api/cliente/"+ g_id_clientes, requestOptions)
+  fetch("http://144.126.210.74:8080/api/cliente/" + g_id_clientes, requestOptions)
     .then((response) => {
-      if(response.status == 200){
-        location.href ="listar.html";
+      if (response.status == 200) {
+        location.href = "listar.html";
       }
     })
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
-  }
+}
 
 //solo numeros
 function enforceNumericInput(inputId, errorMessageId) {
@@ -284,3 +293,5 @@ function formatearFechaHora(fecha_registro) {
   }).replace(/(\d+)\/(\d+)\/(\d+)\,\s*(\d+):(\d+):(\d+)/, '$3-$2-$1 $4:$5:$6');
   return fechaHoraFormateada;
 }
+
+

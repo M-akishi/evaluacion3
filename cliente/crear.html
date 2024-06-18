@@ -6,11 +6,11 @@
     </head>
     <body >
         <div class="container">
-            <form>
+            <form id="form" class="needs-validation" novalidate>
 
                 <div class="mb-3 my-4">
                   <label for="txt_id_cliente" class="form-label">Id Cliente</label>
-                  <input type="text" maxlength="10" pattern="\d*" class="form-control" id="txt_id_cliente" aria-describedby="nombreHelp" required>
+                  <input type="text" maxlength="9" pattern="\d*" class="form-control" id="txt_id_cliente" aria-describedby="nombreHelp" required>
                     <span id="error-message-id" style="color: red; display:none;"></span>
                   <label for="txt_dv" class="form-label">Digito verificador</label>
                   <input type="text" maxlength="1" class="form-control" id="txt_dv" aria-describedby="nombreHelp" required>
@@ -21,9 +21,14 @@
                   <label for="txt_email" class="form-label">Email</label>
                   <input type="text" maxlength="100" class="form-control" id="txt_email" aria-describedby="nombreHelp" required>
                   <label for="txt_celular" class="form-label">Celular</label>
-                  <input type="text" pattern="\d*" class="form-control" id="txt_celular" aria-describedby="nombreHelp" required>
+                  <input type="text" maxlength="9" pattern="\d*" class="form-control" id="txt_celular" aria-describedby="nombreHelp" required>
                     <span id="error-message-phone" style="color: red; display:none;"></span>
                   <div id="nombreHelp" class="form-text">Ingrese el nuevo Cliente.</div>
+
+                  <div class="invalid-feedback">
+                    complete este formulario.
+                  </div>
+              
                 </div>
                 
                 <input class="btn btn-primary" type="button" value="Enviar" onclick="agregarCliente();">
