@@ -11,7 +11,11 @@ function listarCliente() {
     .then((response) => response.json())
     .then((json) => {
       json.forEach(completarFila);
-      $('#tbl_clientes').DataTable();
+      $('#tbl_clientes').DataTable({
+        language: {
+          url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json',
+      }
+      });
     })
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
